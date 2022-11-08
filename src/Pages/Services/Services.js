@@ -3,6 +3,7 @@ import { Container, Row } from 'react-bootstrap';
 
 import AllServices from './AllServices';
 
+
 const Services = () => {
     const [services, setServices] = useState([]);
 
@@ -15,9 +16,10 @@ const Services = () => {
             });
     }, [])
     return (
-        <div className='text-light '>
+        <div className='text-light mb-5'>
             <Container>
                 <h1 className='pt-5 mb-5'> My All Services_</h1>
+
                 <Row xs={1} md={2} lg={3} className="g-4">
                     {
 
@@ -26,6 +28,8 @@ const Services = () => {
 
                     }
                 </Row>
+
+
             </Container>
 
         </div>

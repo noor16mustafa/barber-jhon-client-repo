@@ -38,12 +38,15 @@ const Home = () => {
             <div className='text-light my-5 py-5'>
                 <h1 className='mb-5'>Services_</h1>
                 <Container>
+
                     <Row xs={1} md={2} lg={3} className="g-4">
                         {
                             services.map(service => <AllServices
                                 key={service._id} service={service}></AllServices>)
                         }
                     </Row>
+
+
 
                     <Button variant='outline-warning' className='fs-4 fw-semibold px-5 py-1 mt-5' as={Link} to='/services'>See All</Button>
                 </Container>
