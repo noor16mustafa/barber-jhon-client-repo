@@ -3,13 +3,14 @@ import { Button, Card, Container, Row } from 'react-bootstrap';
 import Marquee from 'react-fast-marquee';
 import { Link } from 'react-router-dom';
 import image from '../../assets/barbar1.jpg'
-import HomePageServices from './HomePageServices';
+import AllServices from '../Services/AllServices';
+
 
 const Home = () => {
     const [services, setServices] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/services')
+        fetch('http://localhost:5000/servicesHome')
             .then(res => res.json())
             .then(data => {
                 console.log(data);
@@ -39,8 +40,8 @@ const Home = () => {
                 <Container>
                     <Row xs={1} md={2} lg={3} className="g-4">
                         {
-                            services.map(service => <HomePageServices
-                                key={service._id} service={service}></HomePageServices>)
+                            services.map(service => <AllServices
+                                key={service._id} service={service}></AllServices>)
                         }
                     </Row>
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Button, Card, Col } from 'react-bootstrap';
 
+const AllServices = ({ service }) => {
 
-const HomePageServices = ({ service }) => {
     const { title, _id, price, img, description } = service;
     return (
         <Col>
@@ -23,6 +23,7 @@ const HomePageServices = ({ service }) => {
             </Card>
         </Col>
     );
+
 };
 
-export default HomePageServices;
+export default AllServices;
