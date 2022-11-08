@@ -8,7 +8,7 @@ import imglogo from '../assets/barber.png';
 const Header = () => {
     return (
 
-        <Navbar collapseOnSelect expand="lg" bg="dark opacity-75" variant="dark" className='fs-4 fw-semibold position-absolute w-100 py-3' style={{ zIndex: '111' }}>
+        <Navbar collapseOnSelect expand="lg" bg="dark opacity-75" variant="dark" className='fs-4 fw-semibold  w-100 py-3' style={{ zIndex: '111' }}>
             <Container>
                 <Navbar.Brand href="#home">
                     <img
