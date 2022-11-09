@@ -11,13 +11,13 @@ const Services = () => {
         fetch('http://localhost:5000/services')
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+
                 setServices(data);
             });
     }, [])
     return (
         <div className='text-light mb-5'>
-            <Container>
+            <Container className='text-center'>
                 <h1 className='pt-5 mb-5'> My All Services_</h1>
 
                 <Row xs={1} md={2} lg={3} className="g-4">

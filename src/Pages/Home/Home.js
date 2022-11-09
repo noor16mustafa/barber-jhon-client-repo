@@ -13,14 +13,14 @@ const Home = () => {
         fetch('http://localhost:5000/servicesHome')
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+
                 setServices(data);
             });
     }, [])
 
     return (
         <div>
-            <Card className="bg-dark text-white rounded-0" style={{ zIndex: '000' }}>
+            <Card className="bg-dark text-white rounded-0 text-center" style={{ zIndex: '000' }}>
                 <Card.Img src={image} alt="" style={{ height: '700px' }} />
                 <Card.ImgOverlay>
                     <Card.Title className='mt-5 pt-5 fs-1 fw-semibold'>Hello I'm</Card.Title>
@@ -36,8 +36,8 @@ const Home = () => {
             {/* .......services section......  */}
 
             <div className='text-light my-5 py-5'>
-                <h1 className='mb-5'>Services_</h1>
-                <Container>
+                <h1 className='mb-5 text-center'>Services_</h1>
+                <Container className='text-center'>
 
                     <Row xs={1} md={2} lg={3} className="g-4">
                         {
