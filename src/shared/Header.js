@@ -7,7 +7,7 @@ import imglogo from '../assets/barber.png';
 import { AuthContext } from '../contexts/AuthProvider/AuthProvider';
 
 const Header = () => {
-    const { logOut } = useContext(AuthContext);
+    const { logOut, user } = useContext(AuthContext);
     const handleLogOut = () => {
         logOut();
     }
@@ -30,14 +30,32 @@ const Header = () => {
                     <Nav className="mx-auto">
                         <Nav.Link as={Link} to='/home'>Home</Nav.Link>
                         <Nav.Link as={Link} to='/services'>Services</Nav.Link>
+                        <Nav.Link as={Link} to='/blog'>Blog</Nav.Link>
+                        {
+                            user?.uid ?
+                                <>
+                                    <Nav.Link as={Link} to='/myreviews'>My Reviews</Nav.Link>
+                                    <Nav.Link as={Link} to='/addservice'>Add Service</Nav.Link>
 
-                        <Nav.Link as={Link} to='/login'>LogIn</Nav.Link>
-                        <Nav.Link as={Link} to='/register'>Sign Up</Nav.Link>
-                        <Nav.Link className='bg-warning text-dark rounded' onClick={handleLogOut}>LogOut</Nav.Link>
+                                    <Nav.Link className='bg-warning text-dark rounded' onClick={handleLogOut}>LogOut</Nav.Link>
+                                </>
+                                :
+                                <>
+                                    <Nav.Link as={Link} to='/login'>LogIn</Nav.Link>
+                                    <Nav.Link as={Link} to='/register' className='btn btn-outline-warning rounded'>Sign Up</Nav.Link>
+                                </>
+                        }
+
+
+
 
                     </Nav>
                     <Nav>
-                        <Nav.Link href="#deets">More deets</Nav.Link>
+                        {
+                            user?.uid ?
+                                <Nav.Link className='text-warning'>{user.displayName}</Nav.Link> : ''
+                        }
+
 
                     </Nav>
                 </Navbar.Collapse>

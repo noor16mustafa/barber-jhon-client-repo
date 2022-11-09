@@ -54,43 +54,42 @@ const Userlogin = () => {
             })
     }
     return (
-        <div className='text-light text-center'>
-            {
-                loading === true ? <Spinner animation="border" variant="warning" /> :
-                    <>
-                        <Container>
-                            <h2 className='text-center text-warning mt-4'>Please Login For Visit</h2>
-                            <div className='w-25 mx-auto mt-5'>
-                                <Form onSubmit={handleSubmit}>
-                                    <Form.Group className="mb-3 " controlId="formBasicEmail">
-                                        <Form.Label className=''>Email address</Form.Label>
-                                        <Form.Control className='bg-dark border border-warning text-white' name="email" type="email" placeholder="Enter email" required />
+        <div className='text-light '>
+            <div className='text-center'>
+                {
+                    loading === true ? <Spinner animation="border" variant="warning" /> : ''
+                }
+            </div>
+            <Container>
+                <h2 className='text-center text-warning mt-4'>Please Login For Visit</h2>
+                <div className='w-25 mx-auto mt-5'>
+                    <Form onSubmit={handleSubmit}>
+                        <Form.Group className="mb-3 " controlId="formBasicEmail">
+                            <Form.Label className=''>Email address</Form.Label>
+                            <Form.Control className='bg-dark border border-warning text-white' name="email" type="email" placeholder="Enter email" required />
 
-                                    </Form.Group>
+                        </Form.Group>
 
-                                    <Form.Group className="mb-3" controlId="formBasicPassword">
-                                        <Form.Label>Password</Form.Label>
-                                        <Form.Control className='bg-dark border border-warning text-white' name='password' type="password" placeholder="Password" required />
-                                    </Form.Group>
-                                    <div className='text-center'>
-                                        <Button variant="outline-warning" type="submit">
-                                            Login
-                                        </Button>
-                                    </div>
+                        <Form.Group className="mb-3" controlId="formBasicPassword">
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control className='bg-dark border border-warning text-white' name='password' type="password" placeholder="Password" required />
+                        </Form.Group>
+                        <div className='text-center'>
+                            <Button variant="outline-warning" type="submit">
+                                Login
+                            </Button>
+                        </div>
 
 
-                                </Form>
-                                <div className='text-center my-3'>
-                                    <Button onClick={handleGoogleSignIn} variant="outline-warning" type="submit" className='px-2'>
-                                        Google Sign In
-                                    </Button>
-                                </div>
-                                <p>New to this side? please <Link to='/register'>Sign Up</Link></p>
-                            </div>
-                        </Container>
-                    </>
-            }
-
+                    </Form>
+                    <div className='text-center my-3'>
+                        <Button onClick={handleGoogleSignIn} variant="outline-warning" type="submit" className='px-2'>
+                            Google Sign In
+                        </Button>
+                    </div>
+                    <p>New to this side? please <Link to='/register'>Sign Up</Link></p>
+                </div>
+            </Container>
 
 
         </div>

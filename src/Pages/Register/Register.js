@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Button, Container, Form } from 'react-bootstrap';
+import { Button, Container, Form, Spinner } from 'react-bootstrap';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
@@ -44,7 +44,13 @@ const Register = () => {
             .catch(e => console.error(e))
     }
     return (
-        <div className='text-light'>
+        <div className='text-light '>
+            <div className='text-center'>
+                {
+                    loading === true ? <Spinner animation="border" variant="warning" /> : ''
+                }
+            </div>
+
             <h1 className='text-center text-warning mt-4'>Sign Up !!!</h1>
             <Container>
                 <div className='w-25 mx-auto mt-5'>
