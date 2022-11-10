@@ -2,14 +2,20 @@ import React, { useContext } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import imglogo from '../assets/barber.png';
 import { AuthContext } from '../contexts/AuthProvider/AuthProvider';
 
 const Header = () => {
     const { logOut, user } = useContext(AuthContext);
+    const navigate = useNavigate();
+
     const handleLogOut = () => {
-        logOut();
+        logOut()
+            .then(() => {
+                navigate('/login');
+            })
+            .catch(e => console.error(e.message))
     }
     return (
 
@@ -34,7 +40,7 @@ const Header = () => {
                         {
                             user?.uid ?
                                 <>
-                                    <Nav.Link as={Link} to='/myreviews'>My Reviews</Nav.Link>
+                                    <Nav.Link as={Link} to='/reviews'>My Reviews</Nav.Link>
                                     <Nav.Link as={Link} to='/addservice'>Add Service</Nav.Link>
 
                                     <Nav.Link className='bg-warning text-dark rounded' onClick={handleLogOut}>LogOut</Nav.Link>

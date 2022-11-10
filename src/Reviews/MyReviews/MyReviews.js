@@ -13,7 +13,7 @@ const MyReviews = () => {
     const [myReviews, setMyReviews] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/reviews?email=${user?.email}`, {
+        fetch(`https://barber-service-review-server.vercel.app/reviews?email=${user?.email}`, {
             headers: {
                 authorization: `Bearer ${localStorage.getItem('token')}`
             }
@@ -21,7 +21,6 @@ const MyReviews = () => {
             .then(res => {
                 if (res.status === 401 || res.status === 403) {
                     toast.error('Unauthorized access');
-
 
                 }
                 return res.json()
@@ -31,14 +30,15 @@ const MyReviews = () => {
                 setMyReviews(data);
 
             })
-    }, [user?.email])
+
+    }, [user?.email]);
 
     //------------ delete operation--------
 
     const handleDelete = id => {
         const proceed = window.confirm('Are you sure,you want to delete this review?');
         if (proceed) {
-            fetch(`http://localhost:5000/reviews/${id}`, {
+            fetch(`https://barber-service-review-server.vercel.app/reviews/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
@@ -64,7 +64,7 @@ const MyReviews = () => {
         <div className='mx-auto my-5 pt-5 text-light '>
             <Container>
                 {
-                    myReviews.length === 0 ? <h1 className='text-center text-danger'>No Reviews Were added </h1>
+                    myReviews.length === 0 ? <h1 className='text-center text-danger'>No Reviews Were added</h1>
                         :
                         <>
                             <h2 className='text-center mb-4'>All Reviews_</h2>

@@ -31,7 +31,7 @@ const ServiceDetails = () => {
             name
         }
 
-        fetch(`http://localhost:5000/reviews`, {
+        fetch(`https://barber-service-review-server.vercel.app/reviews`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -55,7 +55,7 @@ const ServiceDetails = () => {
     // ------------get review from database--------
 
     useEffect(() => {
-        fetch(`http://localhost:5000/reviews?service=${_id}`)
+        fetch(`https://barber-service-review-server.vercel.app/reviews?service=${_id}`)
             .then(res => res.json()
                 .then(data => {
 
