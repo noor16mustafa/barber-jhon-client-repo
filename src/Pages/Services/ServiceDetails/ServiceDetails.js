@@ -1,12 +1,18 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Button, Card, Container, FloatingLabel, Form } from 'react-bootstrap';
+import toast from 'react-hot-toast';
 import { Link, useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
+import AllReview from '../../../Reviews/AllReview/AllReview';
 
 const ServiceDetails = () => {
     const { user } = useContext(AuthContext);
     const serviceDetail = useLoaderData();
+    const [reviews, setReviews] = useState([]);
     const { title, img, price, description, _id } = serviceDetail;
+    const [reload, setReload] = useState(false);
+    console.log(reviews);
+
 
     const handleAddReview = (e) => {
         e.preventDefault();
@@ -32,15 +38,30 @@ const ServiceDetails = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
-                if (data.acknowledge) {
+
+                if (data.acknowledged) {
                     e.target.reset();
                     toast.success('Review Added Successfully');
+
                 }
+
             })
             .catch(er => console.error(er))
 
     }
+
+    // ------------get review from database--------
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/reviews?service=${_id}`)
+            .then(res => res.json()
+                .then(data => {
+
+                    setReviews(data);
+                    setReload(!reload);
+                }))
+    }, [_id, reload])
+
     return (
         <div className='text-light'>
             <Container className='text-center'>
@@ -92,6 +113,19 @@ const ServiceDetails = () => {
                     </div>
                 </Container>
 
+            </div>
+            <div className='mx-auto my-5 pt-5 '>
+                <Container>
+                    <h2 className='text-center mb-4'>All Reviews_</h2>
+
+                    {
+                        reviews.map(allReview => <AllReview
+                            key={allReview._id}
+                            allReview={allReview}
+                        ></AllReview>)
+                    }
+
+                </Container>
             </div>
 
         </div>
