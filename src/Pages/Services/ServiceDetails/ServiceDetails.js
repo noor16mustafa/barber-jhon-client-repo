@@ -11,7 +11,7 @@ const ServiceDetails = () => {
     const [reviews, setReviews] = useState([]);
     const { title, img, price, description, _id } = serviceDetail;
     const [reload, setReload] = useState(false);
-    console.log(reviews);
+
 
 
     const handleAddReview = (e) => {
@@ -79,7 +79,7 @@ const ServiceDetails = () => {
 
                 </Card>
 
-                {/*...... service review...... */}
+
 
 
             </Container>
@@ -114,6 +114,7 @@ const ServiceDetails = () => {
                 </Container>
 
             </div>
+            {/*...... service review...... */}
             <div className='mx-auto my-5 pt-5 '>
                 <Container>
                     <h2 className='text-center mb-4'>All Reviews_</h2>

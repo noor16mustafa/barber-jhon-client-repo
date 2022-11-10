@@ -6,17 +6,29 @@ import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const MyReviews = () => {
     const { user } = useContext(AuthContext);
+    const navigate = useNavigate()
 
     const [myReviews, setMyReviews] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/reviews?email=${user?.email}`)
-            .then(res => res.json()
-                .then(data => {
+        fetch(`http://localhost:5000/reviews?email=${user?.email}`, {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        })
+            .then(res => {
+                if (res.status === 401 || res.status === 403) {
+                    toast.error('Unauthorized access');
 
-                    setMyReviews(data);
 
-                }))
+                }
+                return res.json()
+            })
+            .then(data => {
+
+                setMyReviews(data);
+
+            })
     }, [user?.email])
 
     //------------ delete operation--------
@@ -41,7 +53,7 @@ const MyReviews = () => {
     }
 
     //handle update 
-    const navigate = useNavigate();
+
     const handleEdit = (id) => {
         navigate(`/update/${id}`)
     }

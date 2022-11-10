@@ -4,6 +4,8 @@ import Marquee from 'react-fast-marquee';
 import { Link } from 'react-router-dom';
 import image from '../../assets/barbar1.jpg'
 import AllServices from '../Services/AllServices';
+import AboutMe from './AboutMe';
+import MyWork from './MyWork';
 
 
 const Home = () => {
@@ -33,6 +35,11 @@ const Home = () => {
                 </Card.ImgOverlay>
             </Card>
 
+            {/*.... about me section ....*/}
+            <div>
+                <AboutMe></AboutMe>
+            </div>
+
             {/* .......services section......  */}
 
             <div className='text-light my-5 py-5'>
@@ -51,6 +58,11 @@ const Home = () => {
                     <Button variant='outline-warning' className='fs-4 fw-semibold px-5 py-1 mt-5' as={Link} to='/services'>See All</Button>
                 </Container>
 
+            </div>
+
+            {/* ------my work section -----*/}
+            <div className='mt-5 py-5 mb-5'>
+                <MyWork></MyWork>
             </div>
         </div>
     );
