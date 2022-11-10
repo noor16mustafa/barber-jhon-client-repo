@@ -4,6 +4,7 @@ import { Button, Container, Form, Spinner } from 'react-bootstrap';
 import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
+import useTitle from '../../hooks/useTitle';
 
 const Userlogin = () => {
     const { signIn, provider, setLoading, loading } = useContext(AuthContext);
@@ -11,6 +12,7 @@ const Userlogin = () => {
     const googleProvider = new GoogleAuthProvider();
     const navigate = useNavigate();
     const location = useLocation();
+    useTitle('Login');
 
     const from = location.state?.from?.pathname || '/';
 

@@ -3,10 +3,12 @@ import { Button, Container, Form, Spinner } from 'react-bootstrap';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
+import useTitle from '../../hooks/useTitle';
 
 const Register = () => {
     const { createUser, updateUserProfile, setLoading, loading } = useContext(AuthContext);
     const [error, setError] = useState('');
+    useTitle('SignUp');
 
     const handleSubmit = (event) => {
         event.preventDefault();

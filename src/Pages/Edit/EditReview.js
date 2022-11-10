@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
 import toast from 'react-hot-toast';
 import { useNavigate, useParams } from 'react-router-dom';
+import useTitle from '../../hooks/useTitle';
 
 const EditReview = () => {
     const router = useParams();
     const [update, SetUpdate] = useState({});
     const navigate = useNavigate();
+    useTitle('ServiceEdit');
 
     const { id } = router;
 

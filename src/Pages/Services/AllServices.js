@@ -3,8 +3,10 @@ import { Button, Card, Col } from 'react-bootstrap';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
 import { Link } from 'react-router-dom';
+import useTitle from '../../hooks/useTitle';
 
 const AllServices = ({ service }) => {
+    useTitle('Services');
 
     const { title, _id, price, img, description } = service;
     return (

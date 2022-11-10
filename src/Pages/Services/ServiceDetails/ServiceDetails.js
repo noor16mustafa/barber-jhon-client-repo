@@ -3,6 +3,7 @@ import { Button, Card, Container, FloatingLabel, Form } from 'react-bootstrap';
 import toast from 'react-hot-toast';
 import { Link, useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
+import useTitle from '../../../hooks/useTitle';
 import AllReview from '../../../Reviews/AllReview/AllReview';
 
 const ServiceDetails = () => {
@@ -11,6 +12,7 @@ const ServiceDetails = () => {
     const [reviews, setReviews] = useState([]);
     const { title, img, price, description, _id } = serviceDetail;
     const [reload, setReload] = useState(false);
+    useTitle({ title });
 
 
 

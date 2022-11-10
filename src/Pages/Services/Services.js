@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Row, Spinner } from 'react-bootstrap';
+import useTitle from '../../hooks/useTitle';
 
 import AllServices from './AllServices';
 
@@ -7,6 +8,7 @@ import AllServices from './AllServices';
 const Services = () => {
     const [services, setServices] = useState([]);
     const [loader, setLoader] = useState(true);
+    useTitle('Services')
 
     useEffect(() => {
         fetch('http://localhost:5000/services')
