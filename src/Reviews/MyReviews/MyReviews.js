@@ -1,10 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Button, Container } from 'react-bootstrap';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const MyReviews = () => {
     const { user } = useContext(AuthContext);
-    const [reload, setReload] = useState(false);
+
     const [myReviews, setMyReviews] = useState([]);
 
     useEffect(() => {
@@ -27,42 +29,57 @@ const MyReviews = () => {
             })
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data);
+
                     if (data.deletedCount > 0) {
                         const remaining = myReviews.filter(rvw => rvw._id !== id);
 
                         setMyReviews(remaining)
+                        toast.success('Successfully Deleted Review')
                     }
                 })
         }
     }
 
+    //handle update 
+    const navigate = useNavigate();
+    const handleEdit = (id) => {
+        navigate(`/update/${id}`)
+    }
+
     return (
         <div className='mx-auto my-5 pt-5 text-light '>
             <Container>
-                <h2 className='text-center mb-4'>All Reviews_</h2>
-
                 {
-                    myReviews.map(myReview =>
-                        <div
-                            key={myReview._id}
-                            className='d-flex flex-row bg-secondary shadow  w-50 my-3 py-2 mx-auto'>
-                            <div className='ms-3'>
-                                <img src={myReview.photo} alt="" className='rounded-circle' style={{ width: '80px', height: '80px' }} />
-                            </div>
-                            <div className='ps-4 '>
-                                <h4>{myReview.name}</h4>
-                                <h6>Service: {myReview.serviceName}</h6>
+                    myReviews.length === 0 ? <h1 className='text-center text-danger'>No Reviews Were added </h1>
+                        :
+                        <>
+                            <h2 className='text-center mb-4'>All Reviews_</h2>
 
-                                <p className='text-dark'>: {myReview.review}</p>
-                                <Button onClick={() => handleDelete(myReview._id)} variant='danger' className='me-3'>Delete</Button>
-                                <Button variant='outline-warning'>Edit</Button>
-                            </div>
+                            {
+                                myReviews.map(myReview =>
+                                    <div
+                                        key={myReview._id}
+                                        className='d-flex flex-row bg-secondary shadow  w-50 my-3 py-2 mx-auto'>
+                                        <div className='ms-3'>
+                                            <img src={myReview.photo} alt="" className='rounded-circle' style={{ width: '80px', height: '80px' }} />
+                                        </div>
+                                        <div className='ps-4 '>
+                                            <h4>{myReview.name}</h4>
+                                            <h6>Service: {myReview.serviceName}</h6>
+
+                                            <p className='text-dark'>: {myReview.review}</p>
+                                            <Button onClick={() => handleDelete(myReview._id)} variant='danger' className='me-3'>Delete</Button>
+
+                                            <Button onClick={() => handleEdit(myReview._id)} variant='outline-warning'>Edit</Button>
+                                        </div>
 
 
 
-                        </div>)
+                                    </div>)
+                            }
+                        </>
                 }
+
 
             </Container>
         </div>

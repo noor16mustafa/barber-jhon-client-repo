@@ -3,6 +3,7 @@ import PrivateRoute from "../contexts/PrivateRoute/PrivateRoute";
 import Main from "../layout/Main/Main";
 import AddService from "../Pages/AddService/AddService";
 import Blog from "../Pages/Blog/Blog";
+import EditReview from "../Pages/Edit/EditReview";
 import Home from "../Pages/Home/Home";
 
 
@@ -55,6 +56,9 @@ export const router = createBrowserRouter([
             {
                 path: '/blog',
                 element: <Blog></Blog>
+            }, {
+                path: '/update/:id',
+                element: <EditReview></EditReview>
             }
         ]
     }
