@@ -13,23 +13,24 @@ const MyReviews = () => {
     const [myReviews, setMyReviews] = useState([]);
 
     useEffect(() => {
-        fetch(`https://barber-service-review-server.vercel.app/reviews?email=${user?.email}`, {
-            headers: {
-                authorization: `Bearer ${localStorage.getItem('token')}`
-            }
-        })
-            .then(res => {
-                if (res.status === 401 || res.status === 403) {
-                    toast.error('Unauthorized access');
+        fetch(`https://barber-service-review-server.vercel.app/myreviews?email=${user?.email}`
+            //headers: {
+            //authorization: `Bearer ${localStorage.getItem('token')}`
+            // }
+        )
+            .then(res =>
+                // if (res.status === 401 || res.status === 403) {
+                //     toast.error('Unauthorized access');
 
-                }
-                return res.json()
-            })
-            .then(data => {
+                // }
+                res.json()
+                    .then(data => {
 
-                setMyReviews(data);
+                        setMyReviews(data);
 
-            })
+                    })
+            )
+
 
     }, [user?.email]);
 
